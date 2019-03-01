@@ -7,6 +7,10 @@
 #define DHTTYPE DHT11 //We're using DHT11 sensor
 
 LiquidCrystal_I2C lcd(0x3F,16,2); // lcd(addr,col,row)
+/*
+If LCD i2c is PCF8574, address is 0x27
+If LCD i2c is PCF8574A, address is 0x3F
+*/
 
 //Sensor inizialization
 DHT dht(DHTPIN,DHTTYPE);
