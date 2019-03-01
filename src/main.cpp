@@ -2,19 +2,18 @@
 #include "DHT.h"
 #include "Adafruit_Sensor.h"
 #include "LiquidCrystal_I2C.h"
-#include "Wire.h"
 
 #define DHTPIN 2 // Arduino pin connected to the sensor
 #define DHTTYPE DHT11 //We're using DHT11 sensor
 
-LiquidCrystal_I2C lcd(0x3F,16,2); //set LCD address
+LiquidCrystal_I2C lcd(0x3F,16,2); // lcd(addr,col,row)
 
 //Sensor inizialization
 DHT dht(DHTPIN,DHTTYPE);
 
 void setup() {
-  //Serial.begin(9600);
-  //Serial.println("Temperature and Humidity sensor test.");
+  Serial.begin(9600);
+  Serial.println("Temperature and Humidity sensor test.");
 
   lcd.init(); // initialize the lcd 
   lcd.backlight(); //enable lcd backlight
