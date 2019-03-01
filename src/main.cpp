@@ -13,17 +13,17 @@ LiquidCrystal_I2C lcd(0x3F,16,2); //set LCD address
 DHT dht(DHTPIN,DHTTYPE);
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Temperature and Humidity sensor test.");
+  //Serial.begin(9600);
+  //Serial.println("Temperature and Humidity sensor test.");
 
   lcd.init(); // initialize the lcd 
-  lcd.backlight();
+  lcd.backlight(); //enable lcd backlight
 
-  lcd.print("Temp [C]: ");
-  lcd.setCursor(0,1);
+  lcd.print("Temp [C]: "); //initialize lcd writing
+  lcd.setCursor(0,1); //setCursor(col,row)
   lcd.print("Umidit [%]: ");
 
-  dht.begin();
+  dht.begin(); //start reading from sensor
 }
 
 void loop() {
@@ -35,12 +35,14 @@ void loop() {
   temp = dht.readTemperature(); //read temperature (Celsius as default)
   hum = dht.readHumidity(); //read humidity
 
+  // check error while reading from sensor
   if(isnan(temp)||isnan(hum)){
     Serial.println("ERROR: FAILED TO READ FROM SENSOR!!!");
     return;
   }
+  //print on LCD
   lcd.setCursor(10,0);
-  lcd.print(temp,1);
+  lcd.print(temp,1); //1 decimal digit
   lcd.setCursor(12,1);
-  lcd.print(hum,0);
+  lcd.print(hum,0); // no decimal digits
 }
